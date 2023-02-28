@@ -14,25 +14,53 @@ borda = []
 visitados = []
 
 def getPosicao(el):
-    return int(el[1]) - 1
+    elModificado = el[1:]
+
+    return int(elModificado) - 1
 
 # print(add(1))
 
 # print(getPosicao(estadoInicial))
 
+# def sucessores(el):
+#     sucesso = []
+#     numLinha = getPosicao(el)
+#     linha = matriz[numLinha]
+
+#     for i in range(10):
+#         if(linha[i] != -1 and linha[i] != 0):
+#             numEl = i + 1
+#             sucesso.append('c{}'.format(numEl))
+
+#     return sucesso
+
 def sucessores(el):
-    sucesso = []
+    # sucesso = []
     numLinha = getPosicao(el)
-    linha = matriz[numLinha]
+    # Retorna a Linha da matriz
+    return matriz[numLinha]
 
-    for i in range(10):
-        if(linha[i] != -1 and linha[i] != 0):
-            numEl = i + 1
-            sucesso.append('c{}'.format(numEl))
+    # for i in range(10):
+    #     if(linha[i] != -1 and linha[i] != 0):
+    #         numEl = i + 1
+    #         sucesso.append('c{}'.format(numEl))
 
-    return sucesso
+    # return sucesso
 
 # print(sucessores(estadoInicial))
+
+def melhorSuc(arrSuc):
+    melhor = 999
+    index = -1
+
+    for i in range(10):
+        if(arrSuc[i] < melhor and arrSuc[i] != 0 and arrSuc[i] != -1):
+            melhor = arrSuc[i]
+            index = i
+    
+    return 'c{}'.format(index + 1)
+
+
 
 def busca():
 
@@ -40,9 +68,15 @@ def busca():
 
     # while 1 != 0:
     for i in range(10):
-        # soc = sucessores(borda[len(borda) - 1])
+        # arrSoc = sucessores(borda[len(borda) - 1])
+        melhorDosSucessores = melhorSuc(arrSoc)
         numEl = i + 1
         soc = sucessores('c{}'.format(numEl))
-        print(soc)
+        print(melhorDosSucessores)
 
 busca()
+
+
+# dado = 'c1'
+# dado2 = dado[1:]
+# print(dado2)
